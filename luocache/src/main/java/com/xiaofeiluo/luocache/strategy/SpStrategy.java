@@ -29,6 +29,8 @@ public class SpStrategy implements IStrategy {
             return sharedPreferences.getString(key, null);
         } else if (type == long.class) {
             return sharedPreferences.getLong(key, 0);
+        } else if (type == int.class) {
+            return sharedPreferences.getInt(key, 0);
         } else if (type == float.class) {
             return sharedPreferences.getFloat(key, 0);
         } else if (type == boolean.class) {
