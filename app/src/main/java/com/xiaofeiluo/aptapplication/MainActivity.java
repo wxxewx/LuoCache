@@ -3,10 +3,12 @@ package com.xiaofeiluo.aptapplication;
 import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.xiaofeiluo.luocache.LuoCache;
 
@@ -63,24 +65,45 @@ public class MainActivity extends AppCompatActivity {
         Account account = UserManager.getInstance().getAccount();
         int age = UserManager.getInstance().getAge();
         String city = UserManager.getInstance().getCity();
-        info.setText(name+"--"+age+"--"+city+"--"+account.getPassWorld()+"--"+account.getAccount());
+        info.setText(name + "--" + age + "--" + city + "--" + (account != null ? account.getPassWorld() : "null") + "--" + (account != null ? account.getAccount() : "null"));
     }
 
     private void clearData() {
-        UserManager.getInstance().removeName();
-        UserManager.getInstance().removeAge();
-        UserManager.getInstance().removeAccount();
-        UserManager.getInstance().removeName();
-        UserManager.getInstance().removeCity();
+        UserManager.getInstance().clear();
     }
 
     private void saveData() {
-        UserManager.getInstance().setName(name.getText().toString());
-        UserManager.getInstance().setAge(Integer.parseInt(age.getText().toString()));
-        UserManager.getInstance().setCity(city.getText().toString());
-        Account account = new Account();
-        account.setAccount(this.account.getText().toString());
-        account.setPassWorld(passworld.getText().toString());
-        UserManager.getInstance().setAccount(account);
+        String name = this.name.getText().toString();
+        String age = this.age.getText().toString();
+        String city = this.city.getText().toString();
+        String account = this.account.getText().toString();
+        String passworld = this.passworld.getText().toString();
+        if (TextUtils.isEmpty(name)) {
+            Toast.makeText(this, "请输入姓名", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (TextUtils.isEmpty(age)) {
+            Toast.makeText(this, "请输入年龄", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (TextUtils.isEmpty(city)) {
+            Toast.makeText(this, "请输入城市", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (TextUtils.isEmpty(account)) {
+            Toast.makeText(this, "请输入账号", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (TextUtils.isEmpty(passworld)) {
+            Toast.makeText(this, "请输入密码", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        UserManager.getInstance().setName(name);
+        UserManager.getInstance().setAge(Integer.parseInt(age));
+        UserManager.getInstance().setCity(city);
+        Account accountData = new Account();
+        accountData.setAccount(account);
+        accountData.setPassWorld(passworld);
+        UserManager.getInstance().setAccount(accountData);
     }
 }

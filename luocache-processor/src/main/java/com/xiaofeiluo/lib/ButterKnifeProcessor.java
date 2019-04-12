@@ -141,14 +141,16 @@ public class ButterKnifeProcessor extends AbstractProcessor {
                 .build();
         builder.addMethod(methodSpec_singleton);
 
-        String spName = className+"_cache";
+        String spName = className + "_cache";
         //私有化构造函数
         MethodSpec methodSpec_constructor = MethodSpec.constructorBuilder()
                 .addModifiers(Modifier.PRIVATE)
-                .addStatement("$T.strategy.initCache($S)",cacheClassName,spName.toLowerCase())
+                .addStatement("$T.strategy.initCache($S)", cacheClassName, spName.toLowerCase())
                 .build();
         builder.addMethod(methodSpec_constructor);
 
+
+        ArrayList<String> fieldKeys = new ArrayList<String>();
         for (Element fieldElement : members) {
 
             ElementKind kind = fieldElement.getKind();
@@ -157,9 +159,11 @@ public class ButterKnifeProcessor extends AbstractProcessor {
                 //添加成员变量
                 TypeName fieldTypeName = ClassName.get(fieldElement.asType());
                 String fieldName = fieldElement.getSimpleName().toString();
-                String fieldKey = fieldName + "_key";
+                String fieldKey = (fieldName + "_key").toUpperCase();
 
-                FieldSpec fieldSpec = FieldSpec.builder(String.class, fieldKey.toUpperCase(), Modifier.PRIVATE)
+                fieldKeys.add(fieldKey);
+
+                FieldSpec fieldSpec = FieldSpec.builder(String.class, fieldKey, Modifier.PRIVATE)
                         .initializer("$S", fieldName)
                         .build();
                 builder.addField(fieldSpec);
@@ -172,7 +176,7 @@ public class ButterKnifeProcessor extends AbstractProcessor {
 
                 MethodSpec method_get = MethodSpec.methodBuilder("get" + fieldName)
                         .returns(fieldTypeName)
-                        .addStatement("return ($T)$T.strategy.getCache($N,$T.class)", fieldTypeName,cacheClassName,  fieldKey.toUpperCase(),fieldTypeName)
+                        .addStatement("return ($T)$T.strategy.getCache($N,$T.class)", fieldTypeName, cacheClassName, fieldKey.toUpperCase(), fieldTypeName)
                         .addModifiers(Modifier.PUBLIC, Modifier.SYNCHRONIZED)
                         .build();
                 MethodSpec method_set = MethodSpec.methodBuilder("set" + fieldName)
@@ -194,7 +198,14 @@ public class ButterKnifeProcessor extends AbstractProcessor {
             }
         }
 
-
+        //添加清空方法
+        MethodSpec.Builder method_clear = MethodSpec.methodBuilder("clear")
+                .addModifiers(Modifier.PUBLIC, Modifier.SYNCHRONIZED);
+        for (int i = 0; i < fieldKeys.size(); i++) {
+            String field = fieldKeys.get(i);
+            method_clear.addStatement("LuoCache.strategy.removeCache($N)", field);
+        }
+        builder.addMethod(method_clear.build());
         return builder.build();
 
     }
