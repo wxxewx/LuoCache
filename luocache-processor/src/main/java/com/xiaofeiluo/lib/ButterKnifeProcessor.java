@@ -149,10 +149,17 @@ public class ButterKnifeProcessor extends AbstractProcessor {
         //私有化构造函数
         MethodSpec methodSpec_constructor = MethodSpec.constructorBuilder()
                 .addModifiers(Modifier.PRIVATE)
-                .addStatement("strategy = $T.getStrategy($S);", cacheClassName,spName)
+                .addStatement("strategy = $T.getStrategy($S)", cacheClassName, spName)
                 .build();
         builder.addMethod(methodSpec_constructor);
 
+        //添加设置缓存策略的方法
+        MethodSpec methodSpec_strategy = MethodSpec.methodBuilder("setStrategy")
+                .addModifiers(Modifier.PRIVATE)
+                .addParameter(strategyClassName,"strategy")
+                .addStatement("this.strategy = strategy", cacheClassName, spName)
+                .build();
+        builder.addMethod(methodSpec_strategy);
 
         ArrayList<String> fieldKeys = new ArrayList<String>();
         for (Element fieldElement : members) {

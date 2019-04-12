@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.xiaofeiluo.luocache.LuoCache;
+import com.xiaofeiluo.luocache.strategy.SpStrategy;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        LuoCache.init(getApplication());
+        LuoCache.init(getApplication(), SpStrategy.class);
         account = findViewById(R.id.account);
         name = findViewById(R.id.name);
         age = findViewById(R.id.age);
