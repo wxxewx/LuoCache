@@ -1,11 +1,7 @@
 apply plugin: 'java-library'
 apply plugin: 'com.github.dcendents.android-maven'
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
     api 'com.google.auto.service:auto-service:1.0-rc3'
     api 'com.squareup:javapoet:1.11.1'
     api project(':luocache-annotations')
 }
-
-sourceCompatibility = "7"
-targetCompatibility = "7"
