@@ -7,14 +7,21 @@ import android.text.TextUtils;
 
 import com.google.gson.Gson;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+
 public class SpStrategy implements IStrategy {
 
     private Application context;
-    private static SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences;
     private final Gson gson;
+
+
+    private LinkedHashMap<String, Object> cacheMap;
 
     public SpStrategy(Application context) {
         this.context = context;
+        cacheMap = new LinkedHashMap<>();
         gson = new Gson();
     }
 
@@ -25,6 +32,7 @@ public class SpStrategy implements IStrategy {
 
     @Override
     public Object getCache(String key, Class type) {
+
         if (type == String.class) {
             return sharedPreferences.getString(key, null);
         } else if (type == long.class) {
