@@ -1,1 +1,1 @@
-include  ':luocache-processor', ':luocache', ':luocache-annotations'
+include ':app', ':luocache-processor', ':luocache', ':luocache-annotations'
