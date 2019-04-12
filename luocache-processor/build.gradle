@@ -1,5 +1,7 @@
 apply plugin: 'java-library'
 apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.wxxewx'
 dependencies {
     api 'com.google.auto.service:auto-service:1.0-rc3'
     api 'com.squareup:javapoet:1.11.1'
