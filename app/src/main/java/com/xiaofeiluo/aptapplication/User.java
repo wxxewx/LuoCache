@@ -1,8 +1,8 @@
 package com.xiaofeiluo.aptapplication;
 
-import com.xiaofeiluo.luocacheannotations.BindView;
+import com.xiaofeiluo.luocacheannotations.LuoCache;
 
-@BindView
+@LuoCache
 public class User {
     String name;
     String city;

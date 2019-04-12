@@ -7,7 +7,7 @@ import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
-import com.xiaofeiluo.luocacheannotations.BindView;
+import com.xiaofeiluo.luocacheannotations.LuoCache;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -53,7 +53,7 @@ public class ButterKnifeProcessor extends AbstractProcessor {
 
     @Override
     public Set<String> getSupportedAnnotationTypes() {
-        return Collections.singleton(BindView.class.getCanonicalName());
+        return Collections.singleton(LuoCache.class.getCanonicalName());
     }
 
     @Override
@@ -72,7 +72,7 @@ public class ButterKnifeProcessor extends AbstractProcessor {
 
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
-        Set<? extends Element> elementsAnnotatedWith = roundEnvironment.getElementsAnnotatedWith(BindView.class);
+        Set<? extends Element> elementsAnnotatedWith = roundEnvironment.getElementsAnnotatedWith(LuoCache.class);
         for (Element annotatedElement : elementsAnnotatedWith) {
             analysisElement(annotatedElement);
         }
