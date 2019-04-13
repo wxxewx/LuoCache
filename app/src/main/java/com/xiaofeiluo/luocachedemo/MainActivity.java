@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void clearData() {
+        UserManager.getInstance().removeName();
         UserManager.getInstance().clear();
     }
 

@@ -155,7 +155,6 @@ public class ButterKnifeProcessor extends AbstractProcessor {
 
         //添加设置缓存策略的方法
         MethodSpec methodSpec_strategy = MethodSpec.methodBuilder("setStrategy")
-                .addModifiers(Modifier.PRIVATE)
                 .addParameter(strategyClassName,"strategy")
                 .addStatement("this.strategy = strategy", cacheClassName, spName)
                 .build();
