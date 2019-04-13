@@ -1,4 +1,4 @@
-package com.xiaofeiluo.aptapplication;
+package com.xiaofeiluo.luocachedemo;
 
 import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +11,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.xiaofeiluo.luocache.LuoCache;
+import com.xiaofeiluo.luocache.R;
 import com.xiaofeiluo.luocache.strategy.SpStrategy;
+
 
 
 public class MainActivity extends AppCompatActivity {

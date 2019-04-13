@@ -1,4 +1,4 @@
-package com.xiaofeiluo.aptapplication;
+package com.xiaofeiluo.processor;
 
 import org.junit.Test;
 

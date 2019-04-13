@@ -1,6 +1,6 @@
-package com.xiaofeiluo.aptapplication;
+package com.xiaofeiluo.luocachedemo;
 
-import com.xiaofeiluo.luocacheannotations.LuoCache;
+import com.xiaofeiluo.annotations.LuoCache;
 
 @LuoCache
 public class User {

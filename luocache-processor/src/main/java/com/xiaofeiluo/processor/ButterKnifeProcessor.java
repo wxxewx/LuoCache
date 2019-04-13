@@ -1,4 +1,4 @@
-package com.xiaofeiluo.lib;
+package com.xiaofeiluo.processor;
 
 import com.google.auto.service.AutoService;
 import com.squareup.javapoet.ClassName;
@@ -7,7 +7,7 @@ import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
-import com.xiaofeiluo.luocacheannotations.LuoCache;
+import com.xiaofeiluo.annotations.LuoCache;
 
 import java.util.ArrayList;
 import java.util.Collections;

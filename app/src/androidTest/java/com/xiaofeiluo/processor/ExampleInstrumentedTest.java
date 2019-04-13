@@ -1,4 +1,4 @@
-package com.xiaofeiluo.aptapplication;
+package com.xiaofeiluo.processor;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
