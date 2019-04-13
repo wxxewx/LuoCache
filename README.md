@@ -6,8 +6,8 @@ this is a easy cache util for your project
     
 依赖地址
     
-      implementation 'com.github.wxxewx.LuoCache:luocache:v0.1'
-      annotationProcessor 'com.github.wxxewx.LuoCache:luocache-processor:v0.1'
+      implementation 'com.github.wxxewx.LuoCache:luocache:v0.2'
+      annotationProcessor 'com.github.wxxewx.LuoCache:luocache-processor:v0.2'
       
 如何使用
     
