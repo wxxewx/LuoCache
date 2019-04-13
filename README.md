@@ -81,4 +81,4 @@ this is a easy cache util for your project
      
   给单个的缓存实体配置不同的缓存策略
   
-       UserManager.getInstance().setStrategy(new SpStrategy());
+     UserManager.getInstance().setStrategy(new SpStrategy());
