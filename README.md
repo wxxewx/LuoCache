@@ -1,7 +1,8 @@
 # LuoCache
 this is a easy cache util for your project
     
-    一款简单的使用apt实现的缓存处理器,默认使用gson+sp实现，只需要编写实体类，添加注解即可自动生成缓存代码，无需做任何额外操作。
+一款简单的使用apt实现的缓存处理器,默认使用gson+sp实现，只需要编写实体类，添加注解即可自动生成缓存代码，无需做任何额外操作。
+
     
 依赖地址
     
