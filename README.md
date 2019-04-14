@@ -8,8 +8,8 @@ this is a easy cache util for your project
 
       maven { url 'https://jitpack.io' }
     
-      implementation 'com.github.wxxewx.LuoCache:luocache:v0.2'
-      annotationProcessor 'com.github.wxxewx.LuoCache:luocache-processor:v0.2'
+      implementation 'com.github.wxxewx.LuoCache:luocache:v0.3'
+      annotationProcessor 'com.github.wxxewx.LuoCache:luocache-processor:v0.3'
       
 如何使用
     
