@@ -7,7 +7,12 @@ import android.text.TextUtils;
 
 import com.google.gson.Gson;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
 import java.util.LinkedHashMap;
+
+import in.co.ophio.secure.core.KeyStoreKeyGenerator;
+import in.co.ophio.secure.core.ObscuredPreferencesBuilder;
 
 
 public class SpStrategy implements IStrategy {
@@ -27,7 +32,10 @@ public class SpStrategy implements IStrategy {
     @Override
     public void initCache(Application context, String cacheName) {
         this.context = context;
-        sharedPreferences = this.context.getSharedPreferences(cacheName, Context.MODE_PRIVATE);
+        String key = getKey(context, cacheName);
+        sharedPreferences = new ObscuredPreferencesBuilder().setApplication(context).obfuscateValue(true)
+                .obfuscateKey(true).setSharePrefFileName(cacheName).setSecret(key)
+                .createSharedPrefs();
     }
 
     @Override
@@ -97,5 +105,19 @@ public class SpStrategy implements IStrategy {
             cacheMap.remove(key);
         }
         return commit;
+    }
+
+
+    private String getKey(Application application, String cacheName) {
+        try {
+            return KeyStoreKeyGenerator
+                    .get(application, cacheName)
+                    .loadOrGenerateKeys();
+        } catch (GeneralSecurityException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

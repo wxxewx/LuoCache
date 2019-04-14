@@ -9,7 +9,7 @@ android {
 
 
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -30,4 +30,5 @@ android {
 dependencies {
     api project(':luocache-annotations')
     api 'com.google.code.gson:gson:2.8.5'
+    api "in.co.ophio:secure-preferences:0.1.3"
 }
